@@ -34,10 +34,9 @@ const register = async (req, res) => {
     });
 
     res.status(201).json({
-      user: {
-        id: newUser._id,
-        username: newUser.username,
-      },
+      id: newUser._id,
+      username: newUser.username,
+      role: newUser.role,
       token: userToken,
     });
   } catch (error) {
@@ -66,10 +65,9 @@ const login = async (req, res) => {
     });
 
     res.status(200).json({
-      user: {
-        id: user._id,
-        username: user.username,
-      },
+      id: user._id,
+      username: user.username,
+      role: user.role,
       token: userToken,
     });
   } catch (error) {
