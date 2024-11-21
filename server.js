@@ -15,19 +15,22 @@ app.use(
   cors({
     origin: "https://berkanozmen.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Çerez kullanıyorsanız
+    credentials: true,
   })
 );
 
 app.get("/", (req, res) => res.send("Welcome to the server"));
 
-connectDB();
-
-app.use(cors());
-
 app.use("/auth", AuthRouter);
 app.use("/project", ProjectRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log("Server is running on port " + process.env.PORT);
-});
+connectDB()
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log("Server is running on port", process.env.PORT);
+    });
+  })
+  .catch((error) => {
+    console.error("Database connection failed:", error.message);
+    process.exit(1);
+  });
