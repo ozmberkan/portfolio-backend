@@ -10,7 +10,14 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "https://berkanozmen.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Çerez kullanıyorsanız
+  })
+);
 
 app.get("/", (req, res) => res.send("Welcome to the server"));
 
