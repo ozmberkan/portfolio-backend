@@ -31,6 +31,6 @@ connectDB()
     });
   })
   .catch((error) => {
-    console.error("Database connection failed:", error.message);
+    console.error("Veritabanı bağlantı hatası:", error);
     process.exit(1);
   });
