@@ -58,4 +58,29 @@ const deleteProject = async (req, res) => {
   }
 };
 
-module.exports = { createProject, getAllProjects, deleteProject };
+const updateProject = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const updatedProject = await Project.findByIdAndUpdate(id, req.body);
+
+    if (!updatedProject) {
+      return res.status(404).json({ message: "Proje bulunamadı" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Proje güncellendi", updatedProject });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Bir hata oluştu", error: error.message });
+  }
+};
+
+module.exports = {
+  createProject,
+  getAllProjects,
+  deleteProject,
+  updateProject,
+};

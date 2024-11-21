@@ -6,29 +6,24 @@ const register = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Kullanıcı adının zaten var olup olmadığını kontrol et
     const user = await Auth.findOne({ username });
     if (user) {
       return res.status(400).json({ message: "Kullanıcı adı zaten alınmış!" });
     }
 
-    // Alanların doldurulup doldurulmadığını kontrol et
     if (!username || !password) {
       return res
         .status(400)
         .json({ message: "Lütfen tüm alanları doldurunuz!" });
     }
 
-    // Şifreyi hashle
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Yeni kullanıcı oluştur
     const newUser = await Auth.create({
       username,
       password: hashedPassword,
     });
 
-    // Token oluştur
     const userToken = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
