@@ -32,4 +32,30 @@ const createProject = async (req, res) => {
   }
 };
 
-module.exports = { createProject };
+const getAllProjects = async (req, res) => {
+  try {
+    const allProjects = await Project.find({});
+    return res.status(200).json({ allProjects });
+  } catch (error) {
+    return res.status(500).json({ message: "Bir hata oluştu" });
+  }
+};
+
+const deleteProject = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProject = await Project.findByIdAndDelete(id);
+
+    if (!deletedProject) {
+      return res.status(404).json({ message: "Proje bulunamadı" });
+    }
+
+    return res.status(200).json({ message: "Proje silindi", deletedProject });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Bir hata oluştu", error: error.message });
+  }
+};
+
+module.exports = { createProject, getAllProjects, deleteProject };
