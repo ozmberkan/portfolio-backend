@@ -13,7 +13,12 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["https://berkanozmen.com", "http://localhost:5173"],
+    origin: [
+      "https://berkanozmen.com",
+      "http://localhost:5173",
+      "https://www.berkanozmen.com/",
+      "https://berkanozmen.vercel.app",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
