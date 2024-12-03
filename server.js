@@ -32,7 +32,7 @@ app.use("/project", ProjectRouter);
 connectDB()
   .then(() => {
     app.listen(process.env.PORT, () => {
-      console.log("Server is running on port", process.env.PORT);
+      console.log("Sunucu bu port üzerinde çalışıyor:", process.env.PORT);
     });
   })
   .catch((error) => {
