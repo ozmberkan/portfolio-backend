@@ -17,6 +17,8 @@ app.use(
       "http://localhost:5173",
       "https://www.berkanozmen.com/",
       "https://berkanozmen.vercel.app",
+      "www.berkanozmen.com/",
+      "berkanozmen.com",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
