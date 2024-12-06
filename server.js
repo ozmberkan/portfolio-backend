@@ -15,10 +15,9 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://www.berkanozmen.com/",
+      "https://www.berkanozmen.com",
       "https://berkanozmen.vercel.app",
-      "www.berkanozmen.com/",
-      "berkanozmen.com",
+      "https://berkanozmen.com",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
